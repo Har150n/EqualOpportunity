@@ -8,7 +8,7 @@ class Applicant:
 #creates an Application object
     def createApp(self):
         resume = "my resume link"
-        cover_letter = "letterl ink"
+        cover_letter = "letter link"
         newApp = Application(self.name, self.age, resume, cover_letter)
 
 
