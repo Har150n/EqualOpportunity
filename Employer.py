@@ -12,11 +12,11 @@ class Employer:
 
 class appRequest:
     # allows employers to input deadline, login, and requirements for app requests
-    def __init__(self, deadline, gpa, workEligibility, listOfApps):
+    def __init__(self, deadline, gpa, workEligibility):
         self.deadline = deadline
         self.gpa = gpa
         self.workEligibility = workEligibility
-        self.listOfApps = listOfApps
+        self.listOfApps = []
 
     def meetRequirements(self,Application,gpa,workEligibility):
         if self.gpa <= Application.gpa and self.workEligibility == Application.workEligibility:

@@ -2,7 +2,7 @@
 from flask import Flask, render_template, redirect, url_for, request
 from Application import Application
 import Application
-
+from Employer import appRequest
 
 
 # create the application object
@@ -17,6 +17,7 @@ def home():
 def welcome():
     return render_template('welcome.html')  # render a template
 
+
 # Route for handling the login page logic
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -28,25 +29,40 @@ def login():
             return redirect(url_for('home'))
     return render_template('login.html', error=error)
 
+
 #page to send in new applicatoin
-@app.route('/applicationform/', methods=['POST'])
+@app.route('/application/')
 def applicationform():
+    return render_template('applicationform.html')
+
+
+#page to create a new job position
+@app.route('/apprequest/')
+def apprequestform():
+    return render_template('apprequestform.html')
+
+
+
+
+@app.route('/applicationdisplay', methods= ['POST', 'GET'])
+def applicationdisplay():
     if request.method == 'POST':
         form_data = request.form
-        name = form_data.get("Name")
         gpa = form_data.get("GPA")
         workEligibility = form_data.get("Work Eligibility")
-        coverLetter = form_data.get("Cover Letter")
-        resume = form_data.get("Resume")
-        newapp = (name, gpa, workEligibility, coverLetter, resume) #creates new application
-        return render_template('applicationform.html', form_data=form_data)
+        newAppRequest = appRequest("deadline", "gpa", True)
+        return render_template('applicationdisplay.html', form_data=form_data)
+
+@app.route('/apprequestdisplay', methods = ['POST', 'GET'])
+def apprequestdisplay():
+    if request.method == 'POST':
+        form_data = request.form
+        gpa = form_data.get("GPA")
+        workEligibility = form_data.get("Work Eligibility")
+        newAppRequest = appRequest("deadline", "gpa", True)
+        return render_template('apprequestdisplay.html', form_data=form_data)
 
 
-
-
-@app.route('/form')
-def form():
-    return render_template('form.html')
 
 
 
