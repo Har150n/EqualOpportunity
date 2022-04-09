@@ -5,9 +5,9 @@ class Employer:
         self.app_requests = app_requests
         self.censor = censor
 
-    def createAppReq(self,deadline, requirements):
+    def createAppReq(self, requirements):
         # allows employers to create an application request
-        newApp = appRequest(deadline, requirements)
+        newApp = appRequest(requirements)
         return newApp
 
 class appRequest:

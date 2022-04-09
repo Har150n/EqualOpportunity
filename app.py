@@ -29,8 +29,8 @@ def login():
     return render_template('login.html', error=error)
 
 #page to send in new applicatoin
-@app.route('/data/', methods=['POST'])
-def data():
+@app.route('/applicationform/', methods=['POST'])
+def applicationform():
     if request.method == 'POST':
         form_data = request.form
         name = form_data.get("Name")
@@ -39,7 +39,7 @@ def data():
         coverLetter = form_data.get("Cover Letter")
         resume = form_data.get("Resume")
         newapp = (name, gpa, workEligibility, coverLetter, resume) #creates new application
-        return render_template('data.html', form_data=form_data)
+        return render_template('applicationform.html', form_data=form_data)
 
 
 
