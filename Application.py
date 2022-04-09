@@ -1,9 +1,8 @@
 class Application:
-    def __init__(self, name, age, pdf, cover_letter):
+    def __init__(self, name, gpa, workEligibility, coverLetter, resume):
         self.name = name
-        self.age = age
-        self.pdf = pdf
-        self.cover_letter = cover_letter
-
-
+        self.gpa = gpa
+        self.workEligibility = workEligibility
+        self.coverLetter = coverLetter
+        self.resume = resume
 

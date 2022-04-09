@@ -1,5 +1,8 @@
 # import the Flask class from the flask module
 from flask import Flask, render_template, redirect, url_for, request
+from Application import Application
+import Application
+
 
 
 # create the application object
@@ -25,14 +28,20 @@ def login():
             return redirect(url_for('home'))
     return render_template('login.html', error=error)
 
-
+#page to send in new applicatoin
 @app.route('/data/', methods=['POST'])
 def data():
-
     if request.method == 'POST':
         form_data = request.form
-        print(form_data)
+        name = form_data.get("Name")
+        gpa = form_data.get("GPA")
+        workEligibility = form_data.get("Work Eligibility")
+        coverLetter = form_data.get("Cover Letter")
+        resume = form_data.get("Resume")
+        newapp = (name, gpa, workEligibility, coverLetter, resume) #creates new application
         return render_template('data.html', form_data=form_data)
+
+
 
 
 @app.route('/form')
