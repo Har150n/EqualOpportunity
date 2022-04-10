@@ -5,8 +5,14 @@
     <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
   </head>
   <body>
-    <div class="container">
-      <h1>Please login</h1>
+  <div style = " position: relative; top: 5%">
+  <h1 class = "text-center" style = "font-size: 100px;">Equal Opportunity </h1>
+  <h1 class = "text-center">
+    <small class="text-muted">Problem Statement: </small>
+  </div>
+  </h1>
+    <div class="container" style = "width: 50%; float:left; position:relative; top:50%;left: 10%" >
+      <h1>Applicant Login</h1>
       <br>
       <form action="" method="post">
         <input type="text" placeholder="Username" name="username" value="{{
@@ -19,5 +25,21 @@
         <p class="error"><strong>Error:</strong> {{ error }}
       {% endif %}
     </div>
+
+  <div class="container  mx-auto" style = "width: 50%; float: right; position:relative;top:50%; left: 10%">
+      <h1>Employer Login</h1>
+      <br>
+      <form action="" method="post">
+        <input type="text" placeholder="Username" name="username" value="{{
+          request.form.username }}">
+         <input type="password" placeholder="Password" name="password" value="{{
+          request.form.password }}">
+        <input class="btn btn-default" type="submit" value="Login">
+      </form>
+      {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+      {% endif %}
+    </div>
+
   </body>
 </html>
