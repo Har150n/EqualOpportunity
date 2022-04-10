@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3bda464-9f4c-41d2-a272-e0410d053f2c" name="Changes" comment="pushed app.py changes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/about.html" afterDir="false" />
-    </list>
+    <list default="true" id="a3bda464-9f4c-41d2-a272-e0410d053f2c" name="Changes" comment="added application request forms" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,9 +55,9 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\Users\elise\PycharmProjects\EqualOpportunity\venv\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -88,7 +88,7 @@
       <workItem from="1649524914670" duration="1031000" />
       <workItem from="1649526352831" duration="11143000" />
       <workItem from="1649543264322" duration="13103000" />
-      <workItem from="1649562645997" duration="7296000" />
+      <workItem from="1649562645997" duration="6715000" />
     </task>
     <task id="LOCAL-00001" summary="hello test commit">
       <created>1649525223110</created>
@@ -181,12 +181,12 @@
       <option name="project" value="LOCAL" />
       <updated>1649568420631</updated>
     </task>
-    <task id="LOCAL-00014" summary="pushed app.py changes">
-      <created>1649569752112</created>
+    <task id="LOCAL-00014" summary="added application request forms">
+      <created>1649570625380</created>
       <option name="number" value="00014" />
       <option name="presentableId" value="LOCAL-00014" />
       <option name="project" value="LOCAL" />
-      <updated>1649569752112</updated>
+      <updated>1649570625380</updated>
     </task>
     <option name="localTasksCounter" value="15" />
     <servers />
@@ -204,7 +204,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -213,12 +212,12 @@
     <MESSAGE value="got html templates setup" />
     <MESSAGE value="application form page" />
     <MESSAGE value="reformatted" />
-    <MESSAGE value="added application request forms" />
     <MESSAGE value="landing page html improvement" />
     <MESSAGE value="updated openApp.html" />
     <MESSAGE value="finalized app request class attributes" />
     <MESSAGE value="pushed app.py changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="pushed app.py changes" />
+    <MESSAGE value="added application request forms" />
+    <option name="LAST_COMMIT_MESSAGE" value="added application request forms" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -237,8 +236,5 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/EqualOpportunity$app.coverage" NAME="app Coverage Results" MODIFIED="1649569964849" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
