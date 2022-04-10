@@ -96,6 +96,10 @@ def apprequestdisplay():
         newAppRequest = appRequest(position, company, deadline, gpa, workEligibility) #creates new application
         return render_template('apprequestdisplay.html', form_data=form_data)
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 
 
 
