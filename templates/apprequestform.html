@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Open Applications</title>
+        <style>
+            body{
+            background-color:beige;
+            }
+        </style>
+   </head>
+    <body>
+
 <form action= "{{ url_for('apprequestdisplay') }}" method = "POST">
     <p>GPA <input type = "text" name = "GPA" /></p>
     <p>Work Eligibility <input type = "text" name = "Work Eligibility" /></p>
@@ -6,3 +19,6 @@
     <p>Deadline <input type = "text" name = "Deadline" /></p>
     <p><input type = "submit" value = "Submit" /></p>
 </form>
+
+    </body>
+</html>
