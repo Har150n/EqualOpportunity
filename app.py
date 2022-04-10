@@ -27,10 +27,12 @@ def openApp():
 def login():
     error = None
     if request.method == 'POST':
-        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
+        if request.form['employerUsername'] != 'employer' or request.form['employerPassword'] != 'employer':
             error = 'Invalid Credentials. Please try again.'
         else:
+            print("success")
             return redirect(url_for('home'))
+
     return render_template('login.html', error=error)
 
 
@@ -63,7 +65,7 @@ def apprequestdisplay():
         form_data = request.form
         gpa = form_data.get("GPA")
         workEligibility = form_data.get("Work Eligibility")
-        newAppRequest = appRequest("deadline", "gpa", True)
+        newAppRequest = appRequest("deadline", "gpa", True) #creates new application
         return render_template('apprequestdisplay.html', form_data=form_data)
 
 

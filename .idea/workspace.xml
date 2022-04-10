@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a3bda464-9f4c-41d2-a272-e0410d053f2c" name="Changes" comment="added application request forms">
+    <list default="true" id="a3bda464-9f4c-41d2-a272-e0410d053f2c" name="Changes" comment="landing page html improvement">
+      <change afterPath="$PROJECT_DIR$/templates/openApp.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/openApp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +90,7 @@
       <workItem from="1649524767977" duration="51000" />
       <workItem from="1649524914670" duration="1031000" />
       <workItem from="1649526352831" duration="11143000" />
-      <workItem from="1649543264322" duration="6086000" />
+      <workItem from="1649543264322" duration="8662000" />
     </task>
     <task id="LOCAL-00001" summary="hello test commit">
       <created>1649525223110</created>
@@ -146,7 +148,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649546479662</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="landing page html improvement">
+      <created>1649553234377</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1649553234377</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,9 +181,10 @@
     <MESSAGE value="application form page" />
     <MESSAGE value="reformatted" />
     <MESSAGE value="added application request forms" />
-    <option name="LAST_COMMIT_MESSAGE" value="added application request forms" />
+    <MESSAGE value="landing page html improvement" />
+    <option name="LAST_COMMIT_MESSAGE" value="landing page html improvement" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/EqualOpportunity$app.coverage" NAME="app Coverage Results" MODIFIED="1649550552547" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/EqualOpportunity$app.coverage" NAME="app Coverage Results" MODIFIED="1649555758328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

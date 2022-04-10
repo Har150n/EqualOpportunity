@@ -5,20 +5,18 @@
     <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
   </head>
   <body>
-  <div style = " position: relative; top: 5%">
   <h1 class = "text-center" style = "font-size: 100px;">Equal Opportunity </h1>
   <h1 class = "text-center">
-    <small class="text-muted">Problem Statement: </small>
-  </div>
+      <small class="text-muted">Problem Statement: </small>
   </h1>
     <div class="container" style = "width: 50%; float:left; position:relative; top:50%;left: 10%" >
       <h1>Applicant Login</h1>
       <br>
-      <form action="" method="post">
-        <input type="text" placeholder="Username" name="username" value="{{
-          request.form.username }}">
-         <input type="password" placeholder="Password" name="password" value="{{
-          request.form.password }}">
+      <form action="{{ url_for('openApp') }" method="post">
+        <input type="text" placeholder="Username" name="applicantUsername" value="{{
+          request.form.Username }}">
+         <input type="password" placeholder="Password" name="applicantPassword" value="{{
+          request.form.Password }}">
         <input class="btn btn-default" type="submit" value="Login">
       </form>
       {% if error %}
@@ -30,10 +28,10 @@
       <h1>Employer Login</h1>
       <br>
       <form action="" method="post">
-        <input type="text" placeholder="Username" name="username" value="{{
-          request.form.username }}">
-         <input type="password" placeholder="Password" name="password" value="{{
-          request.form.password }}">
+        <input type="text" placeholder="Username" name="employerUsername" value="{{
+          request.form.Username }}">
+         <input type="password" placeholder="Password" name="employerPassword" value="{{
+          request.form.Password }}">
         <input class="btn btn-default" type="submit" value="Login">
       </form>
       {% if error %}
