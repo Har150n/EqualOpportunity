@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Open Applications</title>
+        <style>
+      table,
+      th,
+      td {
+        padding: 10px;
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+    </style>
+   </head>
+   <body>
+   <h1 align="center">Open Applications</h1>
+      <table align="center">
+      <tr>
+         <th>Position</th>
+         <th>Company</th>
+         <th>Submission closes on:</th>
+      </tr>
+      <tr>
+         <td>Software Engineer Internship</td>
+         <td>Amazon</td>
+         <td>April 21, 2022</td>
+      </tr>
+      <tr>
+         <td>Flight Test Engineer Internship</td>
+         <td>BETA Technologies</td>
+         <td>April 27, 2022</td>
+      </tr>
+      <tr>
+         <td>Marketing Internship</td>
+         <td>Company</td>
+         <td>May 20, 2022</td>
+      </tr>
+      <tr>
+         <td>Product Designer Internship</td>
+         <td>Helen Bennett</td>
+         <td>April 21, 2022</td>
+      </tr>
+      </table>
+   </body>
+</html>
