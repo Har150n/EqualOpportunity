@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3bda464-9f4c-41d2-a272-e0410d053f2c" name="Changes" comment="added application request forms">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/about.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
-    </list>
+    <list default="true" id="a3bda464-9f4c-41d2-a272-e0410d053f2c" name="Changes" comment="added application request forms" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -185,7 +181,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649568420631</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="added application request forms">
+      <created>1649570625380</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1649570625380</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,12 +212,12 @@
     <MESSAGE value="got html templates setup" />
     <MESSAGE value="application form page" />
     <MESSAGE value="reformatted" />
-    <MESSAGE value="added application request forms" />
     <MESSAGE value="landing page html improvement" />
     <MESSAGE value="updated openApp.html" />
     <MESSAGE value="finalized app request class attributes" />
     <MESSAGE value="pushed app.py changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="pushed app.py changes" />
+    <MESSAGE value="added application request forms" />
+    <option name="LAST_COMMIT_MESSAGE" value="added application request forms" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
