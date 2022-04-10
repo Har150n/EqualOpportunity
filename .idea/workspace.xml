@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3bda464-9f4c-41d2-a272-e0410d053f2c" name="Changes" comment="added application request forms">
-      <change afterPath="$PROJECT_DIR$/templates/appWebsite.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/appWebsite.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/appWebsite.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/applicationform.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/applicationform.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/apprequestform.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/apprequestform.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +30,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="27ZPj0PlbPxOtgHoMn5sShdt9im" />
   <component name="ProjectLevelVcsManager">
