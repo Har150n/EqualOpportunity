@@ -2,23 +2,29 @@
 <html lang="en" dir="ltr">
    <head>
       <meta charset="utf-8">
-       <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+       <link href="../static/bootstrap.min.css" rel="stylesheet" media="screen">
         <style>
             body{
             background-color:beige;
+
             }
         </style>
    </head>
    <body>
-<form action= "{{ url_for('applicationdisplay') }}" method = "POST">
-    <p>Name <input type = "text" name = "Name" /></p>
-    <p>City <input type = "text" name = "City" /></p>
-    <p>Country <input type = "text" name = "Country" /></p>
-    <p>GPA <input type = "text" name = "GPA" /></p>
-    <p>Work Eligibility <input type = "text" name = "Work Eligibility" /></p>
-    <p>Cover Letter <input type = "text" name = "Cover Letter" /></p>
-    <p>Resume <input type = "text" name = "Resume" /></p>
+   <h1 style = "position:relative; top: 100px; left: 40%">Submit your Application!</h1>
+<form action= "{{ url_for('applicationdisplay') }}" method = "POST" style = "float:left; position:relative; left: 40%; top: 100px">
+    <p style = "font-size: 14px">when hide is selected, this field becomes censored to the employer</p>
+
+    <p>Name        <input type = "text" name = "Name" /> <span><button type="button" class="btn btn-outline-secondary" style = "float:right"> hide</button></span> </p>
+
+    <p>City        <input type = "text" name = "City"/><span><button type="button" class="btn btn-outline-secondary" style = "float:right">hide</button></span></p>
+    <p>Country     <input type = "text" name = "Country"/><span><button type="button" class="btn btn-outline-secondary" style = "float:right">hide</button></span></p>
+    <p>GPA         <input type = "text" name = "GPA"/><span><button type="button" class="btn btn-outline-secondary" style = "float:right">hide</button></span></p>
+    <p>Eligibility <input type = "text" name = "Work Eligibility"/><span><button type="button" class="btn btn-outline-secondary" style = "float:right">hide</button></span></p>
+    <p>Cover Letter<input type = "text" name = "Cover Letter"/><span><button type="button" class="btn btn-outline-secondary" style = "float:right">hide</button></span></p>
+    <p>Resume      <input type = "text" name = "Resume"/><span><button type="button" class="btn btn-outline-secondary" style = "float:right">hide</button></span></p>
     <p><input type = "submit" value = "Submit" /></p>
+
 </form>
 
    </body>
