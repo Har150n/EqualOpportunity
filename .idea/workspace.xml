@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a3bda464-9f4c-41d2-a272-e0410d053f2c" name="Changes" comment="finalized app request class attributes">
+    <list default="true" id="a3bda464-9f4c-41d2-a272-e0410d053f2c" name="Changes" comment="pushed app.py changes">
+      <change afterPath="$PROJECT_DIR$/login.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appRequests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/appRequests.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/appWebsite.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/appWebsite.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/applicationdisplay.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/applicationdisplay.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/applicationform.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/applicationform.html" afterDir="false" />
@@ -94,7 +97,7 @@
       <workItem from="1649524914670" duration="1031000" />
       <workItem from="1649526352831" duration="11143000" />
       <workItem from="1649543264322" duration="13103000" />
-      <workItem from="1649562645997" duration="1207000" />
+      <workItem from="1649562645997" duration="5463000" />
     </task>
     <task id="LOCAL-00001" summary="hello test commit">
       <created>1649525223110</created>
@@ -173,7 +176,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649563053154</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="pushed app.py changes">
+      <created>1649564135206</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1649564135206</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,10 +212,18 @@
     <MESSAGE value="landing page html improvement" />
     <MESSAGE value="updated openApp.html" />
     <MESSAGE value="finalized app request class attributes" />
-    <option name="LAST_COMMIT_MESSAGE" value="finalized app request class attributes" />
+    <MESSAGE value="pushed app.py changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="pushed app.py changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app.py</url>
+          <line>100</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -216,6 +234,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/EqualOpportunity$app.coverage" NAME="app Coverage Results" MODIFIED="1649563431462" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/EqualOpportunity$app.coverage" NAME="app Coverage Results" MODIFIED="1649568203904" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

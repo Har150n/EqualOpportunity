@@ -65,24 +65,41 @@ def readAppRequests(file):
 
     return list
 
+def writeAppRequests(file, app):
+    with open(file, 'a') as w:
+        w.write(app.position +"\n")
+        w.write(app.company+"\n")
+        w.write(app.deadline+"\n")
+        w.write(app.gpa+"\n")
+        w.write(app.workEligibility+"\n")
+        w.close()
+
+
 
 
 
 headings = ("Position", "Company", "Submission closes on:","Minimum GPA", "Work Visa")
-data = readAppRequests("./appRequests.txt")
+
 
 @app.route('/openApp/')
 def openApp():
+    data = readAppRequests("./appRequests.txt")
     return render_template('appWebsite.html', headings = headings, data = data)
 
 @app.route('/applicationdisplay', methods= ['POST', 'GET'])
 def applicationdisplay():
     if request.method == 'POST':
         form_data = request.form
+        name = form_data.get("Name")
+        city = form_data.get("GPA")
+        country = form_data.get("Country")
         gpa = form_data.get("GPA")
         workEligibility = form_data.get("Work Eligibility")
-        newAppRequest = appRequest("company", "deadline", "date")
+        coverLetter = form_data.get("Cover Letter")
+        resume = form_data.get("Resume")
+        new_app = Application(name, gpa, workEligibility, coverLetter, resume)
         return render_template('applicationdisplay.html', form_data=form_data)
+
 
 @app.route('/apprequestdisplay', methods = ['POST', 'GET'])
 def apprequestdisplay():
@@ -94,6 +111,7 @@ def apprequestdisplay():
         company = form_data.get("Company")
         deadline = form_data.get("Deadline")
         newAppRequest = appRequest(position, company, deadline, gpa, workEligibility) #creates new application
+        writeAppRequests("./appRequests.txt", newAppRequest)
         return render_template('apprequestdisplay.html', form_data=form_data)
 
 
