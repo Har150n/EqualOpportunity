@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a3bda464-9f4c-41d2-a272-e0410d053f2c" name="Changes" comment="updated openApp.html">
-      <change afterPath="$PROJECT_DIR$/appRequests.txt" afterDir="false" />
+    <list default="true" id="a3bda464-9f4c-41d2-a272-e0410d053f2c" name="Changes" comment="finalized app request class attributes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Employer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Employer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/appWebsite.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/appWebsite.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/applicationdisplay.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/applicationdisplay.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/applicationform.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/applicationform.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/apprequestdisplay.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/apprequestdisplay.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/apprequestform.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/apprequestform.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/openApp.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/openApp.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +94,7 @@
       <workItem from="1649524914670" duration="1031000" />
       <workItem from="1649526352831" duration="11143000" />
       <workItem from="1649543264322" duration="13103000" />
-      <workItem from="1649562645997" duration="393000" />
+      <workItem from="1649562645997" duration="1207000" />
     </task>
     <task id="LOCAL-00001" summary="hello test commit">
       <created>1649525223110</created>
@@ -165,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649555821339</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="finalized app request class attributes">
+      <created>1649563053154</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1649563053154</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,7 +201,8 @@
     <MESSAGE value="added application request forms" />
     <MESSAGE value="landing page html improvement" />
     <MESSAGE value="updated openApp.html" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated openApp.html" />
+    <MESSAGE value="finalized app request class attributes" />
+    <option name="LAST_COMMIT_MESSAGE" value="finalized app request class attributes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -207,6 +216,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/EqualOpportunity$app.coverage" NAME="app Coverage Results" MODIFIED="1649563016070" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/EqualOpportunity$app.coverage" NAME="app Coverage Results" MODIFIED="1649563431462" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

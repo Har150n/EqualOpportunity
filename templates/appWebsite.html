@@ -3,6 +3,7 @@
    <head>
       <meta charset="utf-8">
       <title>Open Applications</title>
+          <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
         <style>
         body {
         background-color: beige;
@@ -21,13 +22,15 @@
       <table align="center">
       <tr>
          {% for header in headings %}
-         <th>{{header}}</th>
+         <th> {{header}}</th>
          {% endfor %}
       </tr>
+
          {% for row in data%}
+
          <tr>
             {%for cell in row%}
-            <td> {{cell}}</td>
+            <td> <a href = "{{url_for('applicationform')}}"> {{cell}} </a></td>
             {% endfor %}
             <tr>
          {% endfor %}
