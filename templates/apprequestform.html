@@ -12,13 +12,13 @@
         </style>
    </head>
     <body>
-
-<form action= "{{ url_for('apprequestdisplay') }}" method = "POST" style = "float:left; position:relative; left: 40%; top: 25%">
-    <p>GPA <input type = "text" name = "GPA" /></p>
-    <p>Work Eligibility <input type = "text" name = "Work Eligibility" /></p>
-    <p>Position <input type = "text" name = "Position" /></p>
-    <p>Company <input type = "text" name = "Company" /></p>
-    <p>Deadline <input type = "text" name = "Deadline" /></p>
+<h1 style = "position:relative; top: 100px; left: 40%">Submit your App Request!</h1>
+<form action= "{{ url_for('apprequestdisplay') }}" method = "POST" style = "float:left; position:relative; left: 40%; top: 100px">
+    <p>GPA <input type = "text" name = "GPA" /><span><button type="button" class="btn btn-outline-secondary" style = "float:right">hide</button></span></p>
+    <p>Work Eligibility <input type = "text" name = "Work Eligibility" /><span><button type="button" class="btn btn-outline-secondary" style = "float:right">hide</button></span></p>
+    <p>Position <input type = "text" name = "Position" /><span><button type="button" class="btn btn-outline-secondary" style = "float:right">hide</button></span></p>
+    <p>Company <input type = "text" name = "Company" /><span><button type="button" class="btn btn-outline-secondary" style = "float:right">hide</button></span></p>
+    <p>Deadline <input type = "text" name = "Deadline" /><span><button type="button" class="btn btn-outline-secondary" style = "float:right">hide</button></span></p>
     <p><input type = "submit" value = "Submit" /></p>
 </form>
 
