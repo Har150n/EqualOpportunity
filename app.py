@@ -41,8 +41,9 @@ def applicationform():
 def apprequestform():
     return render_template('apprequestform.html')
 
-
-
+@app.route('/openApp/')
+def openApp():
+    return render_template('appWebsite.html')
 
 @app.route('/applicationdisplay', methods= ['POST', 'GET'])
 def applicationdisplay():
