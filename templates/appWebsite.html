@@ -17,30 +17,18 @@
    <h1 align="center">Open Applications</h1>
       <table align="center">
       <tr>
-         <th>Position</th>
-         <th>Company</th>
-         <th>Submission closes on:</th>
+         {% for header in headings %}
+         <th>{{header}}</th>
+         {% endfor %}
       </tr>
-      <tr>
-         <td><a href="{{ url_for('applicationform') }}" >Software Engineer Internship</a></td>
-         <td>Amazon</td>
-         <td>April 21, 2022</td>
-      </tr>
-      <tr>
-         <td>Flight Test Engineer Internship</td>
-         <td>BETA Technologies</td>
-         <td>April 27, 2022</td>
-      </tr>
-      <tr>
-         <td>Marketing Internship</td>
-         <td>Company</td>
-         <td>May 20, 2022</td>
-      </tr>
-      <tr>
-         <td>Product Designer Internship</td>
-         <td>Helen Bennett</td>
-         <td>April 21, 2022</td>
-      </tr>
+         {% for row in data%}
+         <tr>
+            {%for cell in row%}
+            <td> {{cell}}</td>
+            {% endfor %}
+            <tr>
+         {% endfor %}
+
       </table>
    </body>
 </html>

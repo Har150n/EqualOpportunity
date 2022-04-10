@@ -5,6 +5,7 @@ import Application
 from Employer import appRequest
 
 
+
 # create the application object
 app = Flask(__name__)
 
@@ -17,9 +18,6 @@ def home():
 def welcome():
     return render_template('welcome.html')  # render a template
 
-@app.route('/openApp/')
-def openApp():
-    return render_template('openApp.html') #open applications
 
 
 # Route for handling the login page logic
@@ -27,11 +25,16 @@ def openApp():
 def login():
     error = None
     if request.method == 'POST':
-        if request.form['employerUsername'] != 'employer' or request.form['employerPassword'] != 'employer':
-            error = 'Invalid Credentials. Please try again.'
-        else:
-            print("success")
+        if request.form['Username'] == 'employer' and request.form['Password'] == 'employer':
+            print("employer success")
+
+
             return redirect(url_for('home'))
+        elif request.form['Username'] == 'applicant' and request.form['Password'] == 'applicant':
+            print("applicant success")
+            return redirect(url_for('openApp'))
+        else:
+            error = 'Invalid Credentials. Please try again.'
 
     return render_template('login.html', error=error)
 
@@ -47,9 +50,30 @@ def applicationform():
 def apprequestform():
     return render_template('apprequestform.html')
 
+#reads added employee app requests
+def readAppRequests(file):
+    list = []
+    with open(file) as f:
+        lines = f.readlines()
+        f.close()
+    i = 0
+    while i < len(lines):
+        tup = (lines[i], lines[i+1], lines[i+2], lines[i+3], lines[i+4])
+
+        list.append(tup)
+        i += 5
+
+    return list
+
+
+
+
+headings = ("Position", "Company", "Submission closes on:","Minimum GPA", "Work Visa")
+data = readAppRequests("./appRequests.txt")
+
 @app.route('/openApp/')
 def openApp():
-    return render_template('appWebsite.html')
+    return render_template('appWebsite.html', headings = headings, data = data)
 
 @app.route('/applicationdisplay', methods= ['POST', 'GET'])
 def applicationdisplay():
@@ -57,7 +81,7 @@ def applicationdisplay():
         form_data = request.form
         gpa = form_data.get("GPA")
         workEligibility = form_data.get("Work Eligibility")
-        newAppRequest = appRequest("deadline", "gpa", True)
+        newAppRequest = appRequest("company", "deadline", "date")
         return render_template('applicationdisplay.html', form_data=form_data)
 
 @app.route('/apprequestdisplay', methods = ['POST', 'GET'])
@@ -66,7 +90,10 @@ def apprequestdisplay():
         form_data = request.form
         gpa = form_data.get("GPA")
         workEligibility = form_data.get("Work Eligibility")
-        newAppRequest = appRequest("deadline", "gpa", True) #creates new application
+        position = form_data.get("Position")
+        company = form_data.get("Company")
+        deadline = form_data.get("Deadline")
+        newAppRequest = appRequest(position, company, deadline, gpa, workEligibility) #creates new application
         return render_template('apprequestdisplay.html', form_data=form_data)
 
 

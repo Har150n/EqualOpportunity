@@ -12,10 +12,10 @@
     <div class="container" style = "width: 50%; float:left; position:relative; top:50%;left: 10%" >
       <h1>Applicant Login</h1>
       <br>
-      <form action="{{ url_for('openApp') }" method="post">
-        <input type="text" placeholder="Username" name="applicantUsername" value="{{
+      <form action="" method="post">
+        <input type="text" placeholder="Username" name="Username" value="{{
           request.form.Username }}">
-         <input type="password" placeholder="Password" name="applicantPassword" value="{{
+         <input type="password" placeholder="Password" name="Password" value="{{
           request.form.Password }}">
         <input class="btn btn-default" type="submit" value="Login">
       </form>
@@ -28,9 +28,9 @@
       <h1>Employer Login</h1>
       <br>
       <form action="" method="post">
-        <input type="text" placeholder="Username" name="employerUsername" value="{{
+        <input type="text" placeholder="Username" name="Username" value="{{
           request.form.Username }}">
-         <input type="password" placeholder="Password" name="employerPassword" value="{{
+         <input type="password" placeholder="Password" name="Password" value="{{
           request.form.Password }}">
         <input class="btn btn-default" type="submit" value="Login">
       </form>
