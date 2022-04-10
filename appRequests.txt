@@ -18,3 +18,43 @@ Gamma Ray
 August 8th, 2022
 3.7
 Required
+Data Analyst
+Scaled Composites
+June 17, 2022
+3.4
+Yes
+DevOps Engineer
+Avalara
+May 29, 2022
+3.2
+Required
+Graphic Designer
+Central Coast Digital Design
+May 24, 2022
+2.5
+Required
+Teacher's Assistant
+San Luis Obispo High School
+July 15, 2022
+2.5
+Required
+Interior Designer
+IKEA
+July 15, 2022
+3.0
+Not Required
+Principal DevOps Engineer
+Highspot
+April 10, 2022
+4.0
+Required
+Director of Systems Engineering
+Avalara
+April 10, 2022
+4.0
+Required
+Director, Engineering
+Smartsheet
+April 10, 2022
+4.0
+Required
