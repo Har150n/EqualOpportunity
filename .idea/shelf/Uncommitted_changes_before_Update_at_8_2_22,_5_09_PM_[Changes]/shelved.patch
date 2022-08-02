@@ -1,0 +1,364 @@
+Index: templates/login.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><html>\n  <head>\n    <title>Flask Intro - login page</title>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <link href=\"../static/bootstrap.min.css\" rel=\"stylesheet\" media=\"screen\">\n\n      <style>\n          body{\n          background-color:beige;\n          }\n      </style>\n\n  </head>\n  <body>\n  <h1 class = \"text-center\" style = \"font-size: 100px;\">Equal Opportunity </h1>\n  <h1 class = \"text-center\">\n      <br><small class=\"text-muted\"><a href=\"about\"><button type=\"button\" class=\"btn btn-dark btn-lg\">About Us</button></a></small>\n  </h1>\n    <div class=\"container\" style = \"width: 50%; float:left; position:relative ; top:50% ; left: 10%\" >\n      <h1>Applicant Login</h1>\n      <br>\n      <form action=\"\" method=\"post\">\n        <input type=\"text\" placeholder=\"Username\" name=\"Username\" value=\"{{\n          request.form.Username }}\">\n         <input type=\"password\" placeholder=\"Password\" name=\"Password\" value=\"{{\n          request.form.Password }}\">\n        <input class=\"btn btn-primary\" type=\"submit\" value=\"Login\">\n      </form>\n      {% if error %}\n        <p class=\"error\"><strong>Error:</strong> {{ error }}\n      {% endif %}\n    </div>\n\n  <div class=\"container  mx-auto\" style = \"width: 50%; float: right; position:relative;top:50%; left: 10%\">\n      <h1>Employer Login</h1>\n      <br>\n      <form action=\"\" method=\"post\">\n        <input type=\"text\" placeholder=\"Username\" name=\"Username\" value=\"{{\n          request.form.Username }}\">\n         <input type=\"password\" placeholder=\"Password\" name=\"Password\" value=\"{{\n          request.form.Password }}\">\n        <input class=\"btn btn-primary\" type=\"submit\" value=\"Login\">\n      </form>\n      {% if error %}\n        <p class=\"error\"><strong>Error:</strong> {{ error }}\n      {% endif %}\n    </div>\n\n  </body>\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/templates/login.html b/templates/login.html
+--- a/templates/login.html	(revision e0d17717cfd95168cb1c8c5a96fd29393987e5e9)
++++ b/templates/login.html	(date 1659376570766)
+@@ -15,36 +15,24 @@
+   <h1 class = "text-center" style = "font-size: 100px;">Equal Opportunity </h1>
+   <h1 class = "text-center">
+       <br><small class="text-muted"><a href="about"><button type="button" class="btn btn-dark btn-lg">About Us</button></a></small>
++      <small class="text-muted"><a href="register"><button type="button" class="btn btn-dark btn-lg">Register</button></a></small>
+   </h1>
++
+     <div class="container" style = "width: 50%; float:left; position:relative ; top:50% ; left: 10%" >
+-      <h1>Applicant Login</h1>
+-      <br>
+-      <form action="" method="post">
+-        <input type="text" placeholder="Username" name="Username" value="{{
+-          request.form.Username }}">
+-         <input type="password" placeholder="Password" name="Password" value="{{
+-          request.form.Password }}">
+-        <input class="btn btn-primary" type="submit" value="Login">
+-      </form>
+-      {% if error %}
+-        <p class="error"><strong>Error:</strong> {{ error }}
+-      {% endif %}
+-    </div>
+-
+-  <div class="container  mx-auto" style = "width: 50%; float: right; position:relative;top:50%; left: 10%">
+-      <h1>Employer Login</h1>
++        <h1>Login</h1>
+       <br>
+       <form action="" method="post">
+-        <input type="text" placeholder="Username" name="Username" value="{{
+-          request.form.Username }}">
+-         <input type="password" placeholder="Password" name="Password" value="{{
+-          request.form.Password }}">
+-        <input class="btn btn-primary" type="submit" value="Login">
++          {{ form.hidden_tag() }}
++        {{ form.username }}
++        {{ form.password }}
++        {{ form.submit }}
+       </form>
+       {% if error %}
+         <p class="error"><strong>Error:</strong> {{ error }}
+       {% endif %}
+     </div>
+ 
++
++
+   </body>
+ </html>
+\ No newline at end of file
+Index: app.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># import the Flask class from the flask module\nfrom flask import Flask, render_template, redirect, url_for, request\nfrom Application import Application\nimport Application\nfrom Employer import appRequest\n\n\n\n# create the application object\napp = Flask(__name__)\n\n# use decorators to link the function to a url\n@app.route('/')\ndef home():\n    return \"Hello, World!\"  # return a string\n\n@app.route('/welcome')\ndef welcome():\n    return render_template('welcome.html')  # render a template\n\n\n\n# Route for handling the login page logic\n@app.route('/login', methods=['GET', 'POST'])\ndef login():\n    error = None\n    if request.method == 'POST':\n        if request.form['Username'] == 'employer' and request.form['Password'] == 'employer':\n            print(\"employer success\")\n\n\n            return redirect(url_for('home'))\n        elif request.form['Username'] == 'applicant' and request.form['Password'] == 'applicant':\n            print(\"applicant success\")\n            return redirect(url_for('openApp'))\n        else:\n            error = 'Invalid Credentials. Please try again.'\n\n    return render_template('login.html', error=error)\n\n\n#page to send in new applicatoin\n@app.route('/application/')\ndef applicationform():\n    return render_template('applicationform.html')\n\n\n#page to create a new job position\n@app.route('/apprequest/')\ndef apprequestform():\n    return render_template('apprequestform.html')\n\n#reads added employee app requests\ndef readAppRequests(file):\n    list = []\n    with open(file) as f:\n        lines = f.readlines()\n        f.close()\n    i = 0\n    while i < len(lines):\n        tup = (lines[i], lines[i+1], lines[i+2], lines[i+3], lines[i+4])\n\n        list.append(tup)\n        i += 5\n\n    return list\n\ndef writeAppRequests(file, app):\n    with open(file, 'a') as w:\n        w.write(app.position +\"\\n\")\n        w.write(app.company+\"\\n\")\n        w.write(app.deadline+\"\\n\")\n        w.write(app.gpa+\"\\n\")\n        w.write(app.workEligibility+\"\\n\")\n        w.close()\n\n\n\n\n\nheadings = (\"Position\", \"Company\", \"Submission closes on:\",\"Minimum GPA\", \"Work Visa\")\n\n\n@app.route('/openApp/')\ndef openApp():\n    data = readAppRequests(\"./appRequests.txt\")\n    return render_template('appWebsite.html', headings = headings, data = data)\n\n@app.route('/applicationdisplay', methods= ['POST', 'GET'])\ndef applicationdisplay():\n    if request.method == 'POST':\n        form_data = request.form\n        name = form_data.get(\"Name\")\n        city = form_data.get(\"GPA\")\n        country = form_data.get(\"Country\")\n        gpa = form_data.get(\"GPA\")\n        workEligibility = form_data.get(\"Work Eligibility\")\n        coverLetter = form_data.get(\"Cover Letter\")\n        resume = form_data.get(\"Resume\")\n        new_app = Application(name, gpa, workEligibility, coverLetter, resume)\n        return render_template('applicationdisplay.html', form_data=form_data)\n\n\n@app.route('/apprequestdisplay', methods = ['POST', 'GET'])\ndef apprequestdisplay():\n    if request.method == 'POST':\n        form_data = request.form\n        gpa = form_data.get(\"GPA\")\n        workEligibility = form_data.get(\"Work Eligibility\")\n        position = form_data.get(\"Position\")\n        company = form_data.get(\"Company\")\n        deadline = form_data.get(\"Deadline\")\n        newAppRequest = appRequest(position, company, deadline, gpa, workEligibility) #creates new application\n        writeAppRequests(\"./appRequests.txt\", newAppRequest)\n        return render_template('apprequestdisplay.html', form_data=form_data)\n\n@app.route('/about')\ndef about():\n    return render_template('about.html')\n\n\n\n\n\n\n# start the server with the 'run()' method\nif __name__ == '__main__':\n    app.run(debug=True)\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app.py b/app.py
+--- a/app.py	(revision e0d17717cfd95168cb1c8c5a96fd29393987e5e9)
++++ b/app.py	(date 1659474456426)
+@@ -3,41 +3,83 @@
+ from Application import Application
+ import Application
+ from Employer import appRequest
+-
+-
++from flask_sqlalchemy import SQLAlchemy
++from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
++from flask_wtf import FlaskForm
++from wtforms import StringField, PasswordField, SubmitField
++from wtforms.validators import InputRequired, Length, ValidationError
++from flask_bcrypt import Bcrypt
+ 
+ # create the application object
+ app = Flask(__name__)
++db = SQLAlchemy(app)
++bcrypt = Bcrypt(app)
++app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
++app.config['SECRET_KEY'] = 'secretkey'
++
++login_manager = LoginManager()
++login_manager.init_app(app)
++login_manager.login_view = 'login'
++
++@login_manager.user_loader
++def load_user(user_id):
++    return User.query.get(int(user_id))
++
++class User(db.Model, UserMixin):
++    id = db.Column(db.Integer, primary_key=True)
++    username = db.Column(db.String(20), nullable=False, unique=True)
++    password = db.Column(db.String(80), nullable=False)
++
++class RegisterForm(FlaskForm):
++    username = StringField(validators=[
++                           InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Username"})
+ 
+-# use decorators to link the function to a url
+-@app.route('/')
+-def home():
+-    return "Hello, World!"  # return a string
++    password = PasswordField(validators=[
++                             InputRequired(), Length(min=8, max=20)], render_kw={"placeholder": "Password"})
+ 
+-@app.route('/welcome')
+-def welcome():
+-    return render_template('welcome.html')  # render a template
++    submit = SubmitField('Register')
+ 
++    def validate_username(self, username):
++        existing_user_username = User.query.filter_by(
++            username=username.data).first()
++        if existing_user_username:
++            raise ValidationError(
++                'That username already exists. Please choose a different one.')
+ 
++class LoginForm(FlaskForm):
++    username = StringField(validators=[
++                           InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Username"})
++
++    password = PasswordField(validators=[
++                             InputRequired(), Length(min=8, max=20)], render_kw={"placeholder": "Password"})
++
++    submit = SubmitField('Login')
+ 
+ # Route for handling the login page logic
+-@app.route('/login', methods=['GET', 'POST'])
++@app.route('/', methods=['GET', 'POST'])
+ def login():
+-    error = None
+-    if request.method == 'POST':
+-        if request.form['Username'] == 'employer' and request.form['Password'] == 'employer':
+-            print("employer success")
+-
+-
+-            return redirect(url_for('home'))
+-        elif request.form['Username'] == 'applicant' and request.form['Password'] == 'applicant':
+-            print("applicant success")
+-            return redirect(url_for('openApp'))
+-        else:
+-            error = 'Invalid Credentials. Please try again.'
++    form = LoginForm()
++    if form.validate_on_submit():
++        user = User.query.filter_by(username=form.username.data).first()
++        if user:
++            if bcrypt.check_password_hash(user.password, form.password.data):
++                login_user(user)
++                return redirect(url_for('openApp'))
++    return render_template('login.html', form=form)
+ 
+-    return render_template('login.html', error=error)
+ 
++@app.route('/register', methods=['GET','POST'])
++def register():
++    form = RegisterForm()
++    print('1')
++    if form.validate_on_submit():
++        hashed_password = bcrypt.generate_password_hash(form.password.data)
++        new_user = User(username=form.username.data, password=hashed_password)
++        db.session.add(new_user)
++        db.session.commit()
++        return redirect(url_for('login'))
++
++    return render_template('register.html', form=form)
+ 
+ #page to send in new applicatoin
+ @app.route('/application/')
+@@ -82,6 +124,7 @@
+ 
+ 
+ @app.route('/openApp/')
++@login_required
+ def openApp():
+     data = readAppRequests("./appRequests.txt")
+     return render_template('appWebsite.html', headings = headings, data = data)
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"a3bda464-9f4c-41d2-a272-e0410d053f2c\" name=\"Changes\" comment=\"pushed app.py changes\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/templates/apprequestform.html\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/templates/apprequestform.html\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/templates/login.html\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/templates/login.html\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Python Script\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitSEFilterConfiguration\">\n    <file-type-list>\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\n      <filtered-out-file-type name=\"TAG\" />\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\n    </file-type-list>\n  </component>\n  <component name=\"ProjectId\" id=\"27ZPj0PlbPxOtgHoMn5sShdt9im\" />\n  <component name=\"ProjectLevelVcsManager\">\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"ASKED_ADD_EXTERNAL_FILES\" value=\"true\" />\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\n  </component>\n  <component name=\"RecentsManager\">\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/templates\" />\n    </key>\n  </component>\n  <component name=\"RunManager\">\n    <configuration name=\"app\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"EqualOpportunity\" />\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\n      <option name=\"PARENT_ENVS\" value=\"true\" />\n      <envs>\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\n      </envs>\n      <option name=\"SDK_HOME\" value=\"\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\n      <EXTENSION ID=\"PythonCoverageRunConfigurationExtension\" runner=\"coverage.py\" />\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/app.py\" />\n      <option name=\"PARAMETERS\" value=\"\" />\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\n      <option name=\"MODULE_MODE\" value=\"false\" />\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\n      <option name=\"INPUT_FILE\" value=\"\" />\n      <method v=\"2\" />\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Python.app\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"a3bda464-9f4c-41d2-a272-e0410d053f2c\" name=\"Changes\" comment=\"\" />\n      <created>1649524766000</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1649524766000</updated>\n      <workItem from=\"1649524767977\" duration=\"51000\" />\n      <workItem from=\"1649524914670\" duration=\"1031000\" />\n      <workItem from=\"1649526352831\" duration=\"11143000\" />\n      <workItem from=\"1649543264322\" duration=\"13103000\" />\n      <workItem from=\"1649562645997\" duration=\"7296000\" />\n      <workItem from=\"1649570739784\" duration=\"8000\" />\n      <workItem from=\"1649570752898\" duration=\"7000\" />\n      <workItem from=\"1649570763281\" duration=\"8000\" />\n      <workItem from=\"1649570861956\" duration=\"1576000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"hello test commit\">\n      <created>1649525223110</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649525223110</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"attributes of applicant and application\">\n      <created>1649528464610</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649528464610</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"attributes of applicant and application\">\n      <created>1649528923776</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649528923776</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"got html templates setup\">\n      <created>1649533852158</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649533852158</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"got html templates setup\">\n      <created>1649540612959</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649540612959</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"application form page\">\n      <created>1649544290540</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649544290540</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"reformatted\">\n      <created>1649544846852</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649544846852</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"added application request forms\">\n      <created>1649546479662</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649546479662</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"landing page html improvement\">\n      <created>1649553234377</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649553234377</updated>\n    </task>\n    <task id=\"LOCAL-00010\" summary=\"updated openApp.html\">\n      <created>1649555821339</created>\n      <option name=\"number\" value=\"00010\" />\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649555821339</updated>\n    </task>\n    <task id=\"LOCAL-00011\" summary=\"finalized app request class attributes\">\n      <created>1649563053154</created>\n      <option name=\"number\" value=\"00011\" />\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649563053154</updated>\n    </task>\n    <task id=\"LOCAL-00012\" summary=\"pushed app.py changes\">\n      <created>1649564135206</created>\n      <option name=\"number\" value=\"00012\" />\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649564135206</updated>\n    </task>\n    <task id=\"LOCAL-00013\" summary=\"pushed app.py changes\">\n      <created>1649568420631</created>\n      <option name=\"number\" value=\"00013\" />\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649568420631</updated>\n    </task>\n    <task id=\"LOCAL-00014\" summary=\"pushed app.py changes\">\n      <created>1649569752112</created>\n      <option name=\"number\" value=\"00014\" />\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649569752112</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"15\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\n    <MESSAGE value=\"hello test commit\" />\n    <MESSAGE value=\"attributes of applicant and application\" />\n    <MESSAGE value=\"got html templates setup\" />\n    <MESSAGE value=\"application form page\" />\n    <MESSAGE value=\"reformatted\" />\n    <MESSAGE value=\"added application request forms\" />\n    <MESSAGE value=\"landing page html improvement\" />\n    <MESSAGE value=\"updated openApp.html\" />\n    <MESSAGE value=\"finalized app request class attributes\" />\n    <MESSAGE value=\"pushed app.py changes\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"pushed app.py changes\" />\n  </component>\n  <component name=\"XDebuggerManager\">\n    <breakpoint-manager>\n      <breakpoints>\n        <line-breakpoint enabled=\"true\" suspend=\"THREAD\" type=\"python-line\">\n          <url>file://$PROJECT_DIR$/app.py</url>\n          <line>100</line>\n          <option name=\"timeStamp\" value=\"13\" />\n        </line-breakpoint>\n      </breakpoints>\n      <default-breakpoints>\n        <breakpoint type=\"python-exception\">\n          <properties notifyOnTerminate=\"true\" exception=\"BaseException\">\n            <option name=\"notifyOnTerminate\" value=\"true\" />\n          </properties>\n        </breakpoint>\n      </default-breakpoints>\n    </breakpoint-manager>\n  </component>\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\n    <SUITE FILE_PATH=\"coverage/EqualOpportunity$app.coverage\" NAME=\"app Coverage Results\" MODIFIED=\"1649577386165\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision e0d17717cfd95168cb1c8c5a96fd29393987e5e9)
++++ b/.idea/workspace.xml	(date 1659474280398)
+@@ -2,8 +2,10 @@
+ <project version="4">
+   <component name="ChangeListManager">
+     <list default="true" id="a3bda464-9f4c-41d2-a272-e0410d053f2c" name="Changes" comment="pushed app.py changes">
++      <change afterPath="$PROJECT_DIR$/database.db" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/templates/register.html" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/templates/apprequestform.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/apprequestform.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -42,13 +44,14 @@
+     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+     <property name="WebServerToolWindowFactoryState" value="false" />
++    <property name="com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File" value="Python" />
+   </component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
+       <recent name="$PROJECT_DIR$/templates" />
+     </key>
+   </component>
+-  <component name="RunManager">
++  <component name="RunManager" selected="Python.app">
+     <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+       <module name="EqualOpportunity" />
+       <option name="INTERPRETER_OPTIONS" value="" />
+@@ -63,6 +66,28 @@
+       <option name="ADD_SOURCE_ROOTS" value="true" />
+       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
++      <option name="PARAMETERS" value="" />
++      <option name="SHOW_COMMAND_LINE" value="false" />
++      <option name="EMULATE_TERMINAL" value="false" />
++      <option name="MODULE_MODE" value="false" />
++      <option name="REDIRECT_INPUT" value="false" />
++      <option name="INPUT_FILE" value="" />
++      <method v="2" />
++    </configuration>
++    <configuration name="scratch_5" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
++      <module name="EqualOpportunity" />
++      <option name="INTERPRETER_OPTIONS" value="" />
++      <option name="PARENT_ENVS" value="true" />
++      <envs>
++        <env name="PYTHONUNBUFFERED" value="1" />
++      </envs>
++      <option name="SDK_HOME" value="" />
++      <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
++      <option name="IS_MODULE_SDK" value="false" />
++      <option name="ADD_CONTENT_ROOTS" value="true" />
++      <option name="ADD_SOURCE_ROOTS" value="true" />
++      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
++      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch_5.py" />
+       <option name="PARAMETERS" value="" />
+       <option name="SHOW_COMMAND_LINE" value="false" />
+       <option name="EMULATE_TERMINAL" value="false" />
+@@ -74,6 +99,7 @@
+     <recent_temporary>
+       <list>
+         <item itemvalue="Python.app" />
++        <item itemvalue="Python.scratch_5" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -93,7 +119,10 @@
+       <workItem from="1649570739784" duration="8000" />
+       <workItem from="1649570752898" duration="7000" />
+       <workItem from="1649570763281" duration="8000" />
+-      <workItem from="1649570861956" duration="1576000" />
++      <workItem from="1649570861956" duration="3239000" />
++      <workItem from="1659178215201" duration="9828000" />
++      <workItem from="1659445958722" duration="1473000" />
++      <workItem from="1659470692153" duration="1906000" />
+     </task>
+     <task id="LOCAL-00001" summary="hello test commit">
+       <created>1649525223110</created>
+@@ -193,7 +222,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1649569752112</updated>
+     </task>
+-    <option name="localTasksCounter" value="15" />
++    <task id="LOCAL-00015" summary="pushed app.py changes">
++      <created>1649577782184</created>
++      <option name="number" value="00015" />
++      <option name="presentableId" value="LOCAL-00015" />
++      <option name="project" value="LOCAL" />
++      <updated>1649577782184</updated>
++    </task>
++    <option name="localTasksCounter" value="16" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -229,9 +265,9 @@
+     <breakpoint-manager>
+       <breakpoints>
+         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+-          <url>file://$PROJECT_DIR$/app.py</url>
+-          <line>100</line>
+-          <option name="timeStamp" value="13" />
++          <url>file://$APPLICATION_CONFIG_DIR$/scratches/scratch_5.py</url>
++          <line>38</line>
++          <option name="timeStamp" value="2" />
+         </line-breakpoint>
+       </breakpoints>
+       <default-breakpoints>
+@@ -244,6 +280,7 @@
+     </breakpoint-manager>
+   </component>
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+-    <SUITE FILE_PATH="coverage/EqualOpportunity$app.coverage" NAME="app Coverage Results" MODIFIED="1649577386165" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
++    <SUITE FILE_PATH="coverage/EqualOpportunity$scratch_5.coverage" NAME="scratch_5 Coverage Results" MODIFIED="1659446671131" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
++    <SUITE FILE_PATH="coverage/EqualOpportunity$app.coverage" NAME="app Coverage Results" MODIFIED="1659473420884" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: templates/register.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/templates/register.html b/templates/register.html
+new file mode 100644
+--- /dev/null	(date 1659473420879)
++++ b/templates/register.html	(date 1659473420879)
+@@ -0,0 +1,24 @@
++<!DOCTYPE html>
++<html lang="en">
++
++<head>
++    <meta charset="UTF-8">
++    <meta http-equiv="X-UA-Compatible" content="IE=edge">
++    <meta name="viewport" content="width=device-width, initial-scale=1.0">
++    <title>Register</title>
++</head>
++
++<body>
++    <h1>Register Page</h1>
++
++    <form method="POST" action="">
++        {{ form.hidden_tag() }}
++        {{ form.username }}
++        {{ form.password }}
++        {{ form.submit }}
++    </form>
++
++    <a href="{{ url_for('login') }}">Already have an account? Log In</a>
++</body>
++
++</html>
+\ No newline at end of file
+Index: database.db
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/database.db b/database.db
+new file mode 100644
+--- /dev/null	(date 1659474502513)
++++ b/database.db	(date 1659474502513)
+@@ -0,0 +1,10 @@
++SQLite format 3   @                                                                     .O}
++� " "�                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  �*�7tableuseruserCREATE TABLE user (
++	id INTEGER NOT NULL, 
++	username VARCHAR(20) NOT NULL, 
++	password VARCHAR(80) NOT NULL, 
++	PRIMARY KEY (id), 
++	UNIQUE (username)
++)'; indexsqlite_autoindex_user_1user       
++   n �n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  H �Har150n$2b$12$AZEJ2SB3prTQoQzV4gNyJuHLCYP3FvMt0sZb7QYkuPmAlqkg8o0JmF �Hello$2b$12$ng65Fyo6iNIjETWlMeXHVepexNTyG5RXz7IUczWB.DK7nEEWGj40i
++   � ��                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               Har150n	Hello
+\ No newline at end of file
