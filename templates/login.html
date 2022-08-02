@@ -15,36 +15,24 @@
   <h1 class = "text-center" style = "font-size: 100px;">Equal Opportunity </h1>
   <h1 class = "text-center">
       <br><small class="text-muted"><a href="about"><button type="button" class="btn btn-dark btn-lg">About Us</button></a></small>
+      <small class="text-muted"><a href="register"><button type="button" class="btn btn-dark btn-lg">Register</button></a></small>
   </h1>
+
     <div class="container" style = "width: 50%; float:left; position:relative ; top:50% ; left: 10%" >
-      <h1>Applicant Login</h1>
+        <h1>Login</h1>
       <br>
       <form action="" method="post">
-        <input type="text" placeholder="Username" name="Username" value="{{
-          request.form.Username }}">
-         <input type="password" placeholder="Password" name="Password" value="{{
-          request.form.Password }}">
-        <input class="btn btn-primary" type="submit" value="Login">
+          {{ form.hidden_tag() }}
+        {{ form.username }}
+        {{ form.password }}
+        {{ form.submit }}
       </form>
       {% if error %}
         <p class="error"><strong>Error:</strong> {{ error }}
       {% endif %}
     </div>
 
-  <div class="container  mx-auto" style = "width: 50%; float: right; position:relative;top:50%; left: 10%">
-      <h1>Employer Login</h1>
-      <br>
-      <form action="" method="post">
-        <input type="text" placeholder="Username" name="Username" value="{{
-          request.form.Username }}">
-         <input type="password" placeholder="Password" name="Password" value="{{
-          request.form.Password }}">
-        <input class="btn btn-primary" type="submit" value="Login">
-      </form>
-      {% if error %}
-        <p class="error"><strong>Error:</strong> {{ error }}
-      {% endif %}
-    </div>
+
 
   </body>
 </html>
